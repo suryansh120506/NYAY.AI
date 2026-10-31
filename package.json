@@ -40,7 +40,7 @@
     "secrets:check": "python scripts/check_secrets.py"
   },
   "devDependencies": {
-    "prettier": "3.9.9",
+    "prettier": "3.9.10",
     "prettier-plugin-tailwindcss": "0.8.1"
   }
 }
