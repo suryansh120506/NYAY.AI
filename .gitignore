@@ -1,0 +1,47 @@
+# deps
+node_modules/
+.pnpm-store/
+
+# next / build
+apps/web/.next/
+apps/web/out/
+*.tsbuildinfo
+apps/web/next-env.d.ts
+
+# tests
+apps/web/test-results/
+apps/web/playwright-report/
+apps/web/blob-report/
+apps/web/playwright/.cache/
+coverage/
+
+# python (phase 2)
+.venv/
+__pycache__/
+*.pyc
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# env / secrets
+.env
+.env.*
+!.env.example
+
+# os / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# bundles (scripts/bundle.py)
+dist/
+
+# visual regression baselines are per OS (pnpm test:visual:update on each machine)
+apps/web/tests/visual/__screenshots__/
+
+# misc
+*.log
+.hypothesis/
+.coverage

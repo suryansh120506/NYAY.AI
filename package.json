@@ -1,0 +1,46 @@
+{
+  "name": "nyay",
+  "private": true,
+  "packageManager": "pnpm@10.34.6",
+  "engines": {
+    "node": ">=22.12",
+    "pnpm": ">=10"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:web": "pnpm --filter @nyay/web dev",
+    "dev:api": "uv run --directory services/api uvicorn app.main:app --reload --port 8100",
+    "worker": "uv run --directory services/api python -m app.workers.scheduler",
+    "infra:up": "docker compose -f infra/docker-compose.yml up -d",
+    "infra:down": "docker compose -f infra/docker-compose.yml down",
+    "migrate": "uv run --directory services/api alembic upgrade head",
+    "seed": "uv run --directory services/api python -m scripts.seed",
+    "db:reset": "uv run --directory services/api python -m scripts.reset_db",
+    "build": "pnpm --filter @nyay/web build",
+    "build:mock": "node scripts/run.mjs NEXT_PUBLIC_USE_MOCKS=true -- pnpm --filter @nyay/web build",
+    "start": "pnpm --filter @nyay/web start",
+    "lint": "pnpm lint:web && pnpm lint:api",
+    "lint:web": "pnpm --filter @nyay/web lint && pnpm --filter @nyay/web typecheck",
+    "lint:api": "uv run --directory services/api ruff check . && uv run --directory services/api ruff format --check . && uv run --directory services/api mypy app scripts",
+    "typecheck": "pnpm --filter @nyay/web typecheck",
+    "test": "pnpm test:web && pnpm test:api",
+    "test:web": "pnpm --filter @nyay/web test",
+    "test:api": "uv run --directory services/api pytest -q",
+    "test:e2e": "pnpm --filter @nyay/web test:e2e",
+    "e2e": "pnpm build:mock && pnpm test:e2e",
+    "load:billing": "uv run --directory services/api python -m scripts.load_billing",
+    "ledger:check": "uv run --directory services/api python -m scripts.ledger_e2e",
+    "gen:api": "uv run --directory services/api python -m scripts.export_openapi > apps/web/lib/api/generated/openapi.json && pnpm --filter @nyay/web gen:api",
+    "bundle": "python scripts/bundle.py",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "e2e:api": "pnpm build && pnpm --filter @nyay/web test:e2e:api",
+    "test:visual": "pnpm build:mock && pnpm --filter @nyay/web test:visual",
+    "tokens:export": "pnpm --filter @nyay/web tokens:export",
+    "secrets:check": "python scripts/check_secrets.py"
+  },
+  "devDependencies": {
+    "prettier": "3.9.9",
+    "prettier-plugin-tailwindcss": "0.8.1"
+  }
+}

@@ -1,0 +1,7 @@
+# One line ending everywhere (CI is Linux; .editorconfig says lf), whatever core.autocrlf says on a machine.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff2 binary
+*.zip binary

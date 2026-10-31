@@ -1,0 +1,302 @@
+[
+  {
+    "id": "news-001",
+    "source": "Demo Legal Wire",
+    "title": "Supreme Court registry explains the new steps for filing urgent mentioning requests",
+    "excerpt": "A short explainer on how advocates can now submit urgent mentioning requests online, and what details the registry asks for before listing.",
+    "canonical_url": "https://example.com/demo/supreme-court-urgent-mentioning",
+    "category": "supreme_court",
+    "minutes_ago": 95,
+    "image_url": null
+  },
+  {
+    "id": "news-002",
+    "source": "Sample Court Reporter",
+    "title": "Allahabad High Court publishes an updated calendar for the coming term",
+    "excerpt": "The calendar lists working days, vacation benches and the dates on which fresh matters will be taken up at the principal seat and the Lucknow Bench.",
+    "canonical_url": "https://example.com/demo/allahabad-hc-calendar",
+    "category": "allahabad_hc",
+    "minutes_ago": 180,
+    "image_url": null
+  },
+  {
+    "id": "news-003",
+    "source": "Demo Legal Wire",
+    "title": "Delhi High Court opens a help desk for first-time e-filers",
+    "excerpt": "Litigants filing without an advocate can get step-by-step help with scanning, page limits and fee payment at the new desk.",
+    "canonical_url": "https://example.com/demo/delhi-hc-efiling-help-desk",
+    "category": "delhi_hc",
+    "minutes_ago": 240,
+    "image_url": null
+  },
+  {
+    "id": "news-004",
+    "source": "Demo Gazette Digest",
+    "title": "What a draft bill’s public consultation period means, and how to send comments",
+    "excerpt": "A plain-language guide to the consultation process for draft legislation: where drafts are published, the usual time window, and how comments are submitted.",
+    "canonical_url": "https://example.com/demo/draft-bill-consultation-guide",
+    "category": "legislation",
+    "minutes_ago": 320,
+    "image_url": null
+  },
+  {
+    "id": "news-005",
+    "source": "Sample Court Reporter",
+    "title": "Supreme Court bench to take up a batch of tenancy appeals after the break",
+    "excerpt": "Several connected appeals on rent and eviction disputes have been tagged together and are expected to be listed once the court reopens.",
+    "canonical_url": "https://example.com/demo/supreme-court-tenancy-batch",
+    "category": "supreme_court",
+    "minutes_ago": 410,
+    "image_url": null
+  },
+  {
+    "id": "news-006",
+    "source": "Demo Legal Wire",
+    "title": "Lucknow Bench issues a notice on the format for case-status enquiries",
+    "excerpt": "Parties are asked to quote the case number and year in a fixed format so enquiries can be answered faster at the counter and online.",
+    "canonical_url": "https://example.com/demo/lucknow-bench-case-status-format",
+    "category": "allahabad_hc",
+    "minutes_ago": 520,
+    "image_url": null
+  },
+  {
+    "id": "news-007",
+    "source": "Demo Gazette Digest",
+    "title": "Delhi district courts extend evening sittings for traffic challan matters",
+    "excerpt": "The extended hours are meant to reduce waiting time for people settling challans in person, according to the notice.",
+    "canonical_url": "https://example.com/demo/delhi-district-evening-sittings",
+    "category": "delhi_hc",
+    "minutes_ago": 640,
+    "image_url": null
+  },
+  {
+    "id": "news-008",
+    "source": "Sample Court Reporter",
+    "title": "Explainer: how a bill becomes law, from introduction to notification",
+    "excerpt": "Readings, committee review, assent and notification: a step-by-step walk-through of the legislative process with the terms you are likely to see in the news.",
+    "canonical_url": "https://example.com/demo/how-a-bill-becomes-law",
+    "category": "legislation",
+    "minutes_ago": 760,
+    "image_url": null
+  },
+  {
+    "id": "news-009",
+    "source": "Demo Legal Wire",
+    "title": "Supreme Court e-committee shares tips for joining hearings by video",
+    "excerpt": "The note covers device checks, naming your video window with the item number, and what to do if the connection drops during a hearing.",
+    "canonical_url": "https://example.com/demo/supreme-court-video-hearing-tips",
+    "category": "supreme_court",
+    "minutes_ago": 900,
+    "image_url": null
+  },
+  {
+    "id": "news-010",
+    "source": "Demo Gazette Digest",
+    "title": "Allahabad High Court mediation centre announces weekend sessions",
+    "excerpt": "Parties referred to mediation can now choose weekend slots, which the centre says should help working litigants attend.",
+    "canonical_url": "https://example.com/demo/allahabad-hc-mediation-weekends",
+    "category": "allahabad_hc",
+    "minutes_ago": 1080,
+    "image_url": null
+  },
+  {
+    "id": "news-011",
+    "source": "Sample Court Reporter",
+    "title": "Delhi High Court legal services committee schedules free legal-aid camps",
+    "excerpt": "Camps will be held across several court complexes, with volunteers explaining eligibility for free legal aid and how to apply.",
+    "canonical_url": "https://example.com/demo/delhi-hc-legal-aid-camps",
+    "category": "delhi_hc",
+    "minutes_ago": 1260,
+    "image_url": null
+  },
+  {
+    "id": "news-012",
+    "source": "Demo Legal Wire",
+    "title": "Rules notified under a state act: where to read them and what changes",
+    "excerpt": "When rules are notified under an act, they set out the procedure. This piece explains where notified rules are published and how to read them.",
+    "canonical_url": "https://example.com/demo/reading-notified-rules",
+    "category": "legislation",
+    "minutes_ago": 1440,
+    "image_url": null
+  },
+  {
+    "id": "news-013",
+    "source": "Demo Gazette Digest",
+    "title": "Supreme Court publishes a guide to reading its daily cause list",
+    "excerpt": "Item numbers, court numbers, and the difference between fresh and after-notice matters, explained with a sample page.",
+    "canonical_url": "https://example.com/demo/supreme-court-cause-list-guide",
+    "category": "supreme_court",
+    "minutes_ago": 1700,
+    "image_url": null
+  },
+  {
+    "id": "news-014",
+    "source": "Sample Court Reporter",
+    "title": "Prayagraj district court moves copying section requests online",
+    "excerpt": "Certified-copy applications can now be filed and tracked online, with collection slots offered at the counter.",
+    "canonical_url": "https://example.com/demo/prayagraj-certified-copies-online",
+    "category": "allahabad_hc",
+    "minutes_ago": 1980,
+    "image_url": null
+  },
+  {
+    "id": "news-015",
+    "source": "Demo Legal Wire",
+    "title": "Saket court complex adds a facilitation centre for senior citizens",
+    "excerpt": "The centre offers seating, help with forms and a separate queue for senior citizens attending hearings.",
+    "canonical_url": "https://example.com/demo/saket-senior-citizen-centre",
+    "category": "delhi_hc",
+    "minutes_ago": 2300,
+    "image_url": null
+  },
+  {
+    "id": "news-016",
+    "source": "Demo Gazette Digest",
+    "title": "Consumer protection basics: where to file, and the role of each commission",
+    "excerpt": "District, state and national commissions hear consumer complaints. This explainer covers how the forum is chosen and what a complaint usually includes.",
+    "canonical_url": "https://example.com/demo/consumer-commission-basics",
+    "category": "legislation",
+    "minutes_ago": 2600,
+    "image_url": null
+  },
+  {
+    "id": "news-017",
+    "source": "Sample Court Reporter",
+    "title": "Supreme Court library opens its reading room to registered interns",
+    "excerpt": "Interns attached to advocates-on-record can apply for reading-room passes, subject to the library’s timings and rules.",
+    "canonical_url": "https://example.com/demo/supreme-court-library-interns",
+    "category": "supreme_court",
+    "minutes_ago": 2900,
+    "image_url": null
+  },
+  {
+    "id": "news-018",
+    "source": "Demo Legal Wire",
+    "title": "Kanpur Nagar district court sets up a token system at the filing counter",
+    "excerpt": "Tokens are issued on arrival and displayed on screens, replacing the earlier single queue at the main counter.",
+    "canonical_url": "https://example.com/demo/kanpur-filing-token-system",
+    "category": "allahabad_hc",
+    "minutes_ago": 3300,
+    "image_url": null
+  },
+  {
+    "id": "news-019",
+    "source": "Demo Gazette Digest",
+    "title": "Delhi High Court reminds litigants to update phone numbers for SMS alerts",
+    "excerpt": "Listing and order alerts are sent by SMS, so parties are asked to keep their registered mobile numbers current with the registry.",
+    "canonical_url": "https://example.com/demo/delhi-hc-sms-alerts",
+    "category": "delhi_hc",
+    "minutes_ago": 3700,
+    "image_url": null
+  },
+  {
+    "id": "news-020",
+    "source": "Sample Court Reporter",
+    "title": "What “commencement” means: why an act can be passed but not yet in force",
+    "excerpt": "An act can come into force on a date set by notification, sometimes section by section. Here is how to check which parts are in force.",
+    "canonical_url": "https://example.com/demo/commencement-explained",
+    "category": "legislation",
+    "minutes_ago": 4100,
+    "image_url": null
+  },
+  {
+    "id": "news-021",
+    "source": "Demo Legal Wire",
+    "title": "Supreme Court shares updated guidance on paper-book page limits",
+    "excerpt": "The guidance sets out font, margin and page-numbering requirements for paper books filed in fresh matters.",
+    "canonical_url": "https://example.com/demo/supreme-court-paper-book-limits",
+    "category": "supreme_court",
+    "minutes_ago": 4600,
+    "image_url": null
+  },
+  {
+    "id": "news-022",
+    "source": "Demo Gazette Digest",
+    "title": "Varanasi district court launches a kiosk for case-status look-ups",
+    "excerpt": "Visitors can search by case number or party name at the kiosk near the main gate, in Hindi or English.",
+    "canonical_url": "https://example.com/demo/varanasi-case-status-kiosk",
+    "category": "allahabad_hc",
+    "minutes_ago": 5100,
+    "image_url": null
+  },
+  {
+    "id": "news-023",
+    "source": "Sample Court Reporter",
+    "title": "Rohini courts publish a map of courtrooms and help desks",
+    "excerpt": "The printable map marks courtrooms, the record room, the legal-aid desk and accessible entrances in the complex.",
+    "canonical_url": "https://example.com/demo/rohini-courts-map",
+    "category": "delhi_hc",
+    "minutes_ago": 5600,
+    "image_url": null
+  },
+  {
+    "id": "news-024",
+    "source": "Demo Legal Wire",
+    "title": "Ordinances explained: when they are issued and how long they last",
+    "excerpt": "An ordinance has the force of law for a limited time unless it is replaced by an act. This explainer covers the basics in plain words.",
+    "canonical_url": "https://example.com/demo/ordinances-explained",
+    "category": "legislation",
+    "minutes_ago": 6200,
+    "image_url": null
+  },
+  {
+    "id": "news-025",
+    "source": "Demo Gazette Digest",
+    "title": "Supreme Court’s legal services committee lists its free-help channels",
+    "excerpt": "A round-up of the helpline, walk-in desk and online form for people who want to know whether they qualify for free legal aid.",
+    "canonical_url": "https://example.com/demo/supreme-court-legal-services-channels",
+    "category": "supreme_court",
+    "minutes_ago": 6900,
+    "image_url": null
+  },
+  {
+    "id": "news-026",
+    "source": "Sample Court Reporter",
+    "title": "Agra and Ghaziabad district courts align e-payment options for court fees",
+    "excerpt": "Both courts now accept the same set of online payment methods for court fees, according to their notices.",
+    "canonical_url": "https://example.com/demo/agra-ghaziabad-e-payments",
+    "category": "allahabad_hc",
+    "minutes_ago": 7600,
+    "image_url": null
+  },
+  {
+    "id": "news-027",
+    "source": "Demo Legal Wire",
+    "title": "Dwarka courts introduce SMS reminders a day before hearings",
+    "excerpt": "Parties with registered mobile numbers will get a reminder with the courtroom and item number the evening before.",
+    "canonical_url": "https://example.com/demo/dwarka-hearing-reminders",
+    "category": "delhi_hc",
+    "minutes_ago": 8300,
+    "image_url": null
+  },
+  {
+    "id": "news-028",
+    "source": "Demo Gazette Digest",
+    "title": "Reading a gazette notification: the parts that matter",
+    "excerpt": "Number, date, the enabling section and the operative text: how to read a gazette notification without getting lost.",
+    "canonical_url": "https://example.com/demo/reading-a-gazette-notification",
+    "category": "legislation",
+    "minutes_ago": 9100,
+    "image_url": null
+  },
+  {
+    "id": "news-029",
+    "source": "Sample Court Reporter",
+    "title": "Gautam Buddh Nagar district court adds a second e-seva kendra",
+    "excerpt": "The new centre helps litigants and advocates with e-filing, case status and certified copies during court hours.",
+    "canonical_url": "https://example.com/demo/gautam-buddh-nagar-e-seva",
+    "category": "allahabad_hc",
+    "minutes_ago": 9900,
+    "image_url": null
+  },
+  {
+    "id": "news-030",
+    "source": "Demo Legal Wire",
+    "title": "Karkardooma courts move lost-and-found to the facilitation centre",
+    "excerpt": "Items found in the complex will now be logged and held at the facilitation centre near the main entrance.",
+    "canonical_url": "https://example.com/demo/karkardooma-lost-and-found",
+    "category": "delhi_hc",
+    "minutes_ago": 10800,
+    "image_url": null
+  }
+]

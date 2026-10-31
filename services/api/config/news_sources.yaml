@@ -1,0 +1,28 @@
+# News sources for the "Legal updates" feed (brief §1.3 News).
+#
+# Feed URLs are deliberately NOT filled in: they must be verified by a person, together with each publisher's terms
+# of use, before being enabled. Until then the feed is served from the seeded fixtures.
+#
+# Fields: name (shown as the source), url (RSS/Atom), category (supreme_court | allahabad_hc | delhi_hc | legislation),
+#         enabled, min_interval_minutes (per-source politeness limit; the job runs every NEWS_REFRESH_MINUTES).
+sources:
+  - name: Supreme Court of India (press releases)
+    url: "TODO(human)"
+    category: supreme_court
+    enabled: false
+    min_interval_minutes: 60
+  - name: Allahabad High Court (notices)
+    url: "TODO(human)"
+    category: allahabad_hc
+    enabled: false
+    min_interval_minutes: 60
+  - name: Delhi High Court (notices)
+    url: "TODO(human)"
+    category: delhi_hc
+    enabled: false
+    min_interval_minutes: 60
+  - name: Legal news outlet (choose and confirm terms)
+    url: "TODO(human)"
+    category: legislation
+    enabled: false
+    min_interval_minutes: 30

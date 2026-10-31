@@ -1,0 +1,484 @@
+@import "tailwindcss";
+
+/*
+ * Nyay.ai design tokens (brief §3.1). This file is the ONLY place colours may be written.
+ * Tailwind's default palette, shadows and type scale are cleared so components can only use these tokens
+ * (docs/ASSUMPTIONS.md A7, A8). scripts/check-design.mjs fails the lint if a colour literal appears elsewhere.
+ */
+@theme {
+  --color-*: initial;
+  --color-canvas: oklch(97.071% 0.00265 286.35); /* page background */
+  --color-surface: oklch(100% 0 0); /* cards, composer, bubbles */
+  --color-ink: oklch(23.158% 0.00381 286.1); /* primary text (charcoal) */
+  --color-ink-2: oklch(53.99% 0.00769 286.14); /* secondary text, >= 4.5:1 on canvas */
+  --color-hairline: rgb(0 0 0 / 0.08);
+  --color-trust: oklch(
+    52.197% 0.17709 255.83
+  ); /* interactive accent: buttons, links, own chat bubble */
+  --color-trust-press: oklch(46.964% 0.15755 255.52);
+  --color-indigo: oklch(
+    32.075% 0.15094 270.29
+  ); /* brand wordmark, premium badge, focus ring emphasis */
+  --color-ok: oklch(51.343% 0.1363 147.2);
+  --color-warn: oklch(57.01% 0.1363 56.16);
+  --color-danger: oklch(53.857% 0.19373 26.72);
+  /* Glass surfaces (citation cards): a faint fill and a hairline edge. Re-pointed by the night theme below. */
+  --color-glass: rgb(255 255 255 / 0.72);
+  --color-glass-edge: rgb(0 0 0 / 0.08);
+  /* Text and chips that sit on a news mesh (always dark, in either theme). */
+  --color-onmesh: oklch(97.305% 0.007 268.55);
+  --color-onmesh-glass: rgb(255 255 255 / 0.12);
+  --color-onmesh-edge: rgb(255 255 255 / 0.22);
+  /* A document page and its clause highlights. Always light, also inside the night theme, so contrast is fixed. */
+  --color-paper: oklch(100% 0 0);
+  --color-paper-ink: oklch(23.158% 0.00381 286.1);
+  --color-paper-risk: oklch(94.347% 0.02522 17.61);
+  --color-paper-risk-edge: oklch(53.857% 0.19373 26.72);
+  --color-paper-review: oklch(95.911% 0.03451 82.91);
+  --color-paper-review-edge: oklch(57.01% 0.1363 56.16);
+  --color-paper-ok: oklch(95.026% 0.02564 154.47);
+  --color-paper-ok-edge: oklch(51.343% 0.1363 147.2);
+  /* Modal scrim. Not part of the themes below: it must stay dark on both the light and the night theme. */
+  --color-scrim: rgb(0 0 0 / 0.5);
+
+  /* Corners: 8 px controls (buttons, inputs, chips, search), 12 px cards and sheets. Nothing is pill-shaped.
+     The round radius is for true circles only (avatars, presence dots); check-design limits where it may appear. */
+  --radius-card: 12px;
+  --radius-input: 8px;
+  --radius-round: 999px;
+
+  --ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* The only permitted shadows: a hairline for resting cards, a soft lift for hover and a deep one for floating
+     panels (citation cards, popovers). Shadows carry depth; borders stay at hairline weight. */
+  --shadow-*: initial;
+  --inset-shadow-*: initial;
+  --drop-shadow-*: initial;
+  --text-shadow-*: initial;
+  --shadow-hairline: 0 1px 2px rgb(0 0 0 / 0.04);
+  --shadow-lift: 0 1px 2px rgb(0 0 0 / 0.04), 0 14px 32px -10px rgb(0 0 0 / 0.16);
+  --shadow-deep: 0 2px 4px rgb(0 0 0 / 0.08), 0 30px 64px -16px rgb(0 0 0 / 0.38);
+  /* Glass: a lit top edge and a deep, soft drop. */
+  --shadow-glass: inset 0 1px 0 rgb(255 255 255 / 0.1), 0 24px 48px -18px rgb(0 0 0 / 0.55);
+  /* Semantic glows for data screens: a one-pixel ring plus a soft halo. */
+  --shadow-glow-danger: 0 0 0 1px rgb(255 90 90 / 0.45), 0 0 22px rgb(255 90 90 / 0.3);
+  --shadow-glow-warn: 0 0 0 1px rgb(255 179 64 / 0.45), 0 0 22px rgb(255 179 64 / 0.26);
+  --shadow-glow-ok: 0 0 0 1px rgb(62 229 143 / 0.45), 0 0 22px rgb(62 229 143 / 0.26);
+
+  /* Type scale. */
+  --text-*: initial;
+  --text-hero: clamp(40px, 6vw, 72px);
+  --text-hero--line-height: 1.05;
+  --text-hero--letter-spacing: -0.035em;
+  --text-hero--font-weight: 600;
+  --text-figure: 44px;
+  --text-figure--line-height: 1.1;
+  --text-figure--letter-spacing: -0.035em;
+  --text-display: 28px;
+  --text-display--line-height: 1.18;
+  --text-display--letter-spacing: -0.024em;
+  --text-headline: 20px;
+  --text-headline--line-height: 1.3;
+  --text-headline--letter-spacing: -0.016em;
+  --text-body: 17px;
+  --text-body--line-height: 1.47;
+  --text-body--letter-spacing: -0.012em;
+  --text-callout: 15px;
+  --text-callout--line-height: 1.45;
+  --text-callout--letter-spacing: -0.008em;
+  --text-caption: 13px;
+  --text-caption--line-height: 1.38;
+  --text-caption--letter-spacing: -0.002em;
+  /* Small uppercase labels on data screens: wide tracking, semibold. */
+  --text-eyebrow: 11px;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.09em;
+  --text-eyebrow--font-weight: 600;
+
+  /* Layout. */
+  --container-page: 1120px;
+  --container-prose: 640px;
+  --container-sheet: 480px;
+  --spacing-section: 120px;
+  --spacing-section-sm: 72px;
+
+  /* Motion: pages render instantly and stay still. The only animation is the loading placeholder's slow opacity
+     pulse (and the chat typing dots), both static under reduced motion. */
+  --animate-pulse-soft: pulse-soft 1.6s ease-in-out infinite;
+
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.55;
+    }
+  }
+}
+
+/*
+ * News mesh palettes: a near-black base and three accents per family (navy, slate, deep crimson). `static` keeps the
+ * variables in the CSS even though only inline styles reference them. components/news/MeshArt blends them from a
+ * hash of the headline, so a story always gets the same picture.
+ */
+@theme static {
+  --color-mesh-navy-base: oklch(15.504% 0.03741 268.12);
+  --color-mesh-navy-a: oklch(30.814% 0.11958 266.48);
+  --color-mesh-navy-b: oklch(51.161% 0.18758 264.82);
+  --color-mesh-navy-c: oklch(23.78% 0.08451 267.16);
+  --color-mesh-slate-base: oklch(15.406% 0.01386 263.86);
+  --color-mesh-slate-a: oklch(37.548% 0.04482 257.42);
+  --color-mesh-slate-b: oklch(64.904% 0.05839 259.59);
+  --color-mesh-slate-c: oklch(22.487% 0.02397 259.3);
+  --color-mesh-crimson-base: oklch(14.423% 0.02439 357.24);
+  --color-mesh-crimson-a: oklch(30.353% 0.10416 12.34);
+  --color-mesh-crimson-b: oklch(54.065% 0.19016 14.04);
+  --color-mesh-crimson-c: oklch(20.125% 0.05557 6.8);
+  --color-mesh-line: rgb(255 255 255 / 0.07);
+  /* Home hero shader: three light tints of the brand blues, read as hex by components/home/HeroShader.tsx. */
+  --color-shader-a: #f5f5f7;
+  --color-shader-b: #eef2fd;
+  --color-shader-c: #eaf3fb;
+  --color-mesh-sheen: rgb(255 255 255 / 0.1);
+}
+
+/*
+ * Night theme (the split-screen workspaces). Components keep using the same tokens (bg-canvas, text-ink, ...); this
+ * scope re-points them, so a screen goes dark by wrapping it in data-theme="night". Every pair below is >= 4.5:1
+ * (checked by the axe tests): ink-2 on canvas 7.4:1, trust on canvas 7.0:1, ok/warn/danger >= 7:1.
+ */
+[data-theme="night"] {
+  --color-canvas: oklch(13.921% 0.0097 261.76);
+  --color-surface: oklch(18.13% 0.01136 260.64);
+  --color-ink: oklch(94.902% 0.00704 268.55);
+  --color-ink-2: oklch(71.669% 0.02542 262.07);
+  --color-hairline: rgb(255 255 255 / 0.1);
+  --color-trust: oklch(71.342% 0.15144 255.74);
+  --color-trust-press: oklch(78.165% 0.11266 255.05);
+  --color-indigo: oklch(78.946% 0.10738 277.23);
+  --color-ok: oklch(81.797% 0.1816 155.53);
+  --color-warn: oklch(82.029% 0.15236 73.25);
+  --color-danger: oklch(68.839% 0.20091 24.06);
+  --color-glass: rgb(255 255 255 / 0.06);
+  --color-glass-edge: rgb(255 255 255 / 0.1);
+  --shadow-hairline: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-lift: 0 1px 2px rgb(0 0 0 / 0.4), 0 14px 32px -10px rgb(0 0 0 / 0.6);
+  --shadow-deep: 0 2px 4px rgb(0 0 0 / 0.5), 0 30px 64px -16px rgb(0 0 0 / 0.8);
+  color-scheme: dark;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+@media (color-gamut: p3) {
+  [data-theme="night"] {
+    --color-danger: oklch(70% 0.23 24);
+    --color-ok: oklch(83% 0.22 152);
+    --color-warn: oklch(81.5% 0.17 72);
+    --color-trust: oklch(71.3% 0.18 256);
+  }
+}
+
+/* Fonts come from next/font/local CSS variables set on <html>. System stack first (brief §3.1). */
+@theme inline {
+  --font-sans:
+    -apple-system, "SF Pro Text", var(--font-inter), var(--font-devanagari), system-ui, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+@property --sweep {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes sweep {
+  to {
+    --sweep: 360deg;
+  }
+}
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Shape-accurate skeleton: a flat tint with a slow opacity pulse, static under reduced motion (A26). */
+@utility skeleton {
+  background-color: color-mix(in srgb, var(--color-ink) 7%, transparent);
+  animation: var(--animate-pulse-soft);
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* Mesh art layers: fine grain, a faint measuring grid that fades toward the edges, and a lit top edge. */
+@utility mesh-grain {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.55'/></svg>");
+}
+@utility mesh-grid {
+  background-image:
+    linear-gradient(var(--color-mesh-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-mesh-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse at 50% 40%, black 20%, transparent 78%);
+}
+@utility mesh-sheen {
+  background-image: linear-gradient(180deg, var(--color-mesh-sheen), transparent);
+}
+
+/* Data-screen backdrop and grid: a dotted measuring grid on near-black. */
+@utility terminal-grid {
+  background-image: radial-gradient(var(--color-glass-edge) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* Reading progress: a hairline that fills as the page scrolls, driven by the scroll position itself (no script).
+   Only where the browser supports scroll timelines; elsewhere the bar is simply not shown. */
+@utility scroll-progress {
+  display: none;
+  @supports (animation-timeline: scroll()) {
+    display: block;
+    transform-origin: 0 50%;
+    animation: grow-x linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+
+/* A light sweeping around a card's edge while work is in progress (an animatable @property angle). */
+@utility scan-border {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(
+      from var(--sweep),
+      transparent 0deg,
+      var(--color-trust) 60deg,
+      transparent 120deg
+    );
+    mask:
+      linear-gradient(black 0 0) content-box,
+      linear-gradient(black 0 0);
+    mask-composite: exclude;
+    animation: sweep 2.4s linear infinite;
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    &::before {
+      animation: none;
+    }
+  }
+}
+
+/* Small uppercase label (see --text-eyebrow). */
+@utility eyebrow {
+  font-size: var(--text-eyebrow);
+  line-height: var(--text-eyebrow--line-height);
+  letter-spacing: var(--text-eyebrow--letter-spacing);
+  font-weight: var(--text-eyebrow--font-weight);
+  text-transform: uppercase;
+}
+
+/* Hover feedback without borders: a 2 % ink fade over any background (brief §3.2). */
+@utility hover-fade {
+  position: relative;
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-color: color-mix(in srgb, var(--color-ink) 2%, transparent);
+    opacity: 0;
+    transition: opacity 200ms var(--ease-apple);
+    pointer-events: none;
+  }
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+/* Devanagari that appears incidentally on non-Hindi pages (the हिं toggle, a Hindi placeholder example) uses system
+   fonts so English pages never download the Devanagari web font. */
+@utility font-system {
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@layer components {
+  /* Native <dialog> bottom sheet: focus trap, Escape and inert background come from the platform.
+     Opens and closes instantly, with no transition. Centred card from md up. */
+  .sheet {
+    margin: auto auto 0;
+    width: 100%;
+    max-width: 100%;
+    max-height: calc(100dvh - 24px);
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+  }
+  .sheet::backdrop {
+    background-color: var(--color-scrim);
+  }
+  /* Command palette: a frosted panel near the top of the screen (night theme tokens via data-theme). */
+  .command-dialog {
+    margin: 12vh auto auto;
+    width: min(36rem, calc(100% - 24px));
+    max-width: none;
+    padding: 0;
+    border: 1px solid var(--color-glass-edge);
+    border-radius: var(--radius-card);
+    background-color: color-mix(in oklab, var(--color-surface) 84%, transparent);
+    backdrop-filter: blur(18px) saturate(140%);
+    color: var(--color-ink);
+    box-shadow: var(--shadow-deep);
+    overflow: hidden;
+  }
+  .command-dialog::backdrop {
+    background-color: var(--color-scrim);
+  }
+  @media (min-width: 768px) {
+    .sheet {
+      margin: auto;
+      max-width: var(--container-sheet);
+      border-radius: var(--radius-card);
+    }
+  }
+}
+
+/*
+ * View transitions between pages (lib/navigation/view-transition.tsx): a quick cross-fade, and elements that carry the
+ * same view-transition-name on both pages (an advocate's avatar) glide into place. Off under reduced motion.
+ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 180ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+::view-transition-group(*) {
+  animation-duration: 320ms;
+  animation-timing-function: cubic-bezier(0.2, 0.9, 0.25, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* Tooltips: native popovers placed with CSS anchor positioning (components/ui/Tooltip.tsx), JS fallback elsewhere. */
+.tooltip {
+  margin: 0;
+  inset: auto;
+  max-width: 16rem;
+  padding: 6px 8px;
+  border: 1px solid var(--color-glass-edge);
+  border-radius: 6px;
+  background-color: var(--color-ink);
+  color: var(--color-canvas);
+  font-size: var(--text-caption);
+  line-height: var(--text-caption--line-height);
+  box-shadow: var(--shadow-lift);
+  pointer-events: none;
+}
+@supports (anchor-name: --a) {
+  .tooltip[data-anchored] {
+    position-area: top;
+    position-try-fallbacks: flip-block;
+    margin-block: 6px;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-optical-sizing: auto;
+    font-feature-settings: "kern", "calt", "ss03";
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  blockquote {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-trust);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-trust) 20%, transparent);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
+  dialog::backdrop {
+    background-color: var(--color-scrim);
+  }
+}
+
+/*
+ * Unlayered rules deliberately beat utilities.
+ * Devanagari needs a line-height of at least 1.6 (brief §3.1) and no negative tracking, wherever it appears:
+ * Hindi pages, and Hindi text typed on English pages (elements get lang="hi").
+ */
+:lang(hi) {
+  line-height: 1.6;
+  letter-spacing: normal;
+}
+
+html:has(dialog[open]:modal) {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

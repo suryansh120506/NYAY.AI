@@ -1,0 +1,17 @@
+# The web image builds from the repository root (pnpm workspace). Keep the context small and secret-free.
+**/node_modules
+**/.next
+**/.venv
+**/__pycache__
+.git
+dist
+design
+docs/screenshots
+services
+apps/web/test-results
+apps/web/playwright-report
+apps/web/blob-report
+apps/web/tests
+.env
+.env.*
+!.env.example

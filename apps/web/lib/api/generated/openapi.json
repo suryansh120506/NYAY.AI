@@ -1,0 +1,4495 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Nyay.ai API",
+    "version": "0.3.0"
+  },
+  "paths": {
+    "/healthz": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Healthz",
+        "description": "Liveness: the process is up.",
+        "operationId": "healthz_healthz_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Healthz Healthz Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/readyz": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Readyz",
+        "description": "Readiness: Postgres, Redis and the vector store answer (brief §1.4).",
+        "operationId": "readyz_readyz_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/otp/request": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Request Otp",
+        "operationId": "request_otp_v1_auth_otp_request_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OtpRequestIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtpRequestOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/otp/verify": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Verify Otp",
+        "operationId": "verify_otp_v1_auth_otp_verify_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OtpVerifyIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthSession"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/refresh": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Refresh",
+        "operationId": "refresh_v1_auth_refresh_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthSession"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/logout": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Logout",
+        "operationId": "logout_v1_auth_logout_post",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/me": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Me",
+        "operationId": "me_v1_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthUser"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Update Me",
+        "operationId": "update_me_v1_me_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfilePatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthUser"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/me/consents": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Record Consent",
+        "description": "Append-only consent history: a withdrawal is a new row with granted=false (and revokes the previous one).",
+        "operationId": "record_consent_v1_me_consents_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsentIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsentOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/me/export": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Export My Data",
+        "description": "Everything we hold about the caller, as JSON: profile, consents, wallet, payments, searches, consultations\n(with the messages still within retention) and documents (with their summaries).",
+        "operationId": "export_my_data_v1_me_export_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Export My Data V1 Me Export Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/me/delete-request": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Request Deletion",
+        "description": "Records the request; an operator completes it. Ledger rows are kept (legal retention) but de-identified.\n\nTODO(human): legal review of retention obligations for financial records vs. DPDP erasure.",
+        "operationId": "request_deletion_v1_me_delete_request_post",
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletionRequestOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/wallet": {
+      "get": {
+        "tags": [
+          "wallet"
+        ],
+        "summary": "Get Wallet",
+        "operationId": "get_wallet_v1_wallet_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WalletOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/wallet/history": {
+      "get": {
+        "tags": [
+          "wallet"
+        ],
+        "summary": "Wallet History",
+        "operationId": "wallet_history_v1_wallet_history_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/WalletTxnOut"
+                  },
+                  "type": "array",
+                  "title": "Response Wallet History V1 Wallet History Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/wallet/topups": {
+      "post": {
+        "tags": [
+          "wallet"
+        ],
+        "summary": "Create Topup",
+        "operationId": "create_topup_v1_wallet_topups_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopupIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopupOrderOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/webhooks/razorpay": {
+      "post": {
+        "tags": [
+          "payments"
+        ],
+        "summary": "Razorpay Webhook",
+        "operationId": "razorpay_webhook_v1_webhooks_razorpay_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookAck"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/dev/payments/{order_id}/capture": {
+      "post": {
+        "tags": [
+          "payments"
+        ],
+        "summary": "Dev Capture",
+        "description": "Dev/test only, fake provider only: \"pays\" an order by sending a signed webhook through the real handler.",
+        "operationId": "dev_capture_v1_dev_payments__order_id__capture_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Order Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookAck"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/parakh/match": {
+      "post": {
+        "tags": [
+          "parakh"
+        ],
+        "summary": "Parakh Match",
+        "description": "Open to anonymous visitors (signed visitor cookie), text only, rate-limited per IP and per visitor/user.",
+        "operationId": "parakh_match_v1_parakh_match_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchRequestIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/advocates/{advocate_id}": {
+      "get": {
+        "tags": [
+          "parakh"
+        ],
+        "summary": "Advocate Profile",
+        "operationId": "advocate_profile_v1_advocates__advocate_id__get",
+        "parameters": [
+          {
+            "name": "advocate_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Advocate Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdvocateProfileOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/news": {
+      "get": {
+        "tags": [
+          "news"
+        ],
+        "summary": "News",
+        "operationId": "news_v1_news_get",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "supreme_court",
+                    "allahabad_hc",
+                    "delhi_hc",
+                    "legislation"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Category"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 50,
+              "minimum": 1,
+              "default": 7,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/admin/ledger/health": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Ledger Health",
+        "operationId": "ledger_health_v1_admin_ledger_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LedgerHealthOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/advocates/{advocate_id}/verify": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Verify Advocate",
+        "operationId": "verify_advocate_v1_admin_advocates__advocate_id__verify_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "advocate_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Advocate Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerifyOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/admin/bonus": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Grant Bonus",
+        "description": "Non-refundable, expiring credit, spent before the paid balance (brief §1.4).",
+        "operationId": "grant_bonus_v1_admin_bonus_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BonusIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Grant Bonus V1 Admin Bonus Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/samvaad/sessions": {
+      "post": {
+        "tags": [
+          "samvaad"
+        ],
+        "summary": "Reserve Session",
+        "operationId": "reserve_session_v1_samvaad_sessions_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReserveIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/samvaad/sessions/{session_id}": {
+      "get": {
+        "tags": [
+          "samvaad"
+        ],
+        "summary": "Get Session",
+        "operationId": "get_session_v1_samvaad_sessions__session_id__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/samvaad/sessions/{session_id}/start": {
+      "post": {
+        "tags": [
+          "samvaad"
+        ],
+        "summary": "Start Session",
+        "operationId": "start_session_v1_samvaad_sessions__session_id__start_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StartIn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/samvaad/sessions/{session_id}/end": {
+      "post": {
+        "tags": [
+          "samvaad"
+        ],
+        "summary": "End Session",
+        "description": "The final trigger (A60): settles to the second and refunds the unused part of the prepaid minutes.",
+        "operationId": "end_session_v1_samvaad_sessions__session_id__end_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/samvaad/sessions/{session_id}/ws-ticket": {
+      "post": {
+        "tags": [
+          "samvaad"
+        ],
+        "summary": "Ws Ticket",
+        "description": "One-time, 30-second ticket for the WebSocket URL: the long-lived token never appears in a URL.",
+        "operationId": "ws_ticket_v1_samvaad_sessions__session_id__ws_ticket_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WsTicketOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/samvaad/sessions/{session_id}/document": {
+      "post": {
+        "tags": [
+          "samvaad"
+        ],
+        "summary": "Attach Document",
+        "operationId": "attach_document_v1_samvaad_sessions__session_id__document_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttachDocumentIn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/samvaad/sessions/{session_id}/rating": {
+      "post": {
+        "tags": [
+          "samvaad"
+        ],
+        "summary": "Rate Session",
+        "operationId": "rate_session_v1_samvaad_sessions__session_id__rating_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RatingIn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/samvaad/sessions/{session_id}/call-token": {
+      "post": {
+        "tags": [
+          "samvaad"
+        ],
+        "summary": "Call Token",
+        "description": "Audio/video room token for a LIVE session (ENABLE_CALLS=true only; the UI shows Audio as \"coming soon\").",
+        "operationId": "call_token_v1_samvaad_sessions__session_id__call_token_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallTokenOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/advocate/me": {
+      "get": {
+        "tags": [
+          "samvaad"
+        ],
+        "summary": "Advocate Me",
+        "operationId": "advocate_me_v1_advocate_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdvocateMeOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/advocate/availability": {
+      "patch": {
+        "tags": [
+          "samvaad"
+        ],
+        "summary": "Set Availability",
+        "operationId": "set_availability_v1_advocate_availability_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AvailabilityIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdvocateMeOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/advocate/rate": {
+      "patch": {
+        "tags": [
+          "samvaad"
+        ],
+        "summary": "Set Rate",
+        "description": "Applies to new consultations only: a reserved or live session keeps the rate it was booked at.",
+        "operationId": "set_rate_v1_advocate_rate_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdvocateMeOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/advocate/sessions": {
+      "get": {
+        "tags": [
+          "samvaad"
+        ],
+        "summary": "Advocate Sessions",
+        "description": "Open requests first, then the last 30 days. Polled by the dashboard (Postgres only, no Redis).",
+        "operationId": "advocate_sessions_v1_advocate_sessions_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AdvocateSessionOut"
+                  },
+                  "type": "array",
+                  "title": "Response Advocate Sessions V1 Advocate Sessions Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/advocate/earnings": {
+      "get": {
+        "tags": [
+          "samvaad"
+        ],
+        "summary": "Advocate Earnings",
+        "operationId": "advocate_earnings_v1_advocate_earnings_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EarningsOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/saransh/documents": {
+      "post": {
+        "tags": [
+          "saransh"
+        ],
+        "summary": "Upload Document",
+        "operationId": "upload_document_v1_saransh_documents_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_document_v1_saransh_documents_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/saransh/documents/{document_id}": {
+      "get": {
+        "tags": [
+          "saransh"
+        ],
+        "summary": "Get Document",
+        "operationId": "get_document_v1_saransh_documents__document_id__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Document Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "saransh"
+        ],
+        "summary": "Delete Document",
+        "operationId": "delete_document_v1_saransh_documents__document_id__delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Document Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/saransh/documents/{document_id}/clauses": {
+      "get": {
+        "tags": [
+          "saransh"
+        ],
+        "summary": "Get Clauses",
+        "description": "Phase 2 contract: clause-level risk for the web analyser. Invisible (404) until SARANSH_CLAUSES_ENABLED.",
+        "operationId": "get_clauses_v1_saransh_documents__document_id__clauses_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Document Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClausesOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AdvocateMatch": {
+        "properties": {
+          "advocate_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Advocate Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "enrolment_no": {
+            "type": "string",
+            "title": "Enrolment No"
+          },
+          "state_bar_council": {
+            "type": "string",
+            "title": "State Bar Council"
+          },
+          "courts": {
+            "items": {
+              "$ref": "#/components/schemas/CourtRef"
+            },
+            "type": "array",
+            "title": "Courts"
+          },
+          "languages": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Languages"
+          },
+          "practice_areas": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "tenancy",
+                "cheque_bounce",
+                "consumer",
+                "matrimonial",
+                "criminal_bail",
+                "property",
+                "employment"
+              ]
+            },
+            "type": "array",
+            "title": "Practice Areas"
+          },
+          "years_experience": {
+            "type": "integer",
+            "title": "Years Experience"
+          },
+          "rate_paise_per_min": {
+            "type": "integer",
+            "title": "Rate Paise Per Min"
+          },
+          "platform_fee_paise_per_min": {
+            "type": "integer",
+            "title": "Platform Fee Paise Per Min"
+          },
+          "available_now": {
+            "type": "boolean",
+            "title": "Available Now"
+          },
+          "why": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Why"
+          }
+        },
+        "type": "object",
+        "required": [
+          "advocate_id",
+          "display_name",
+          "enrolment_no",
+          "state_bar_council",
+          "courts",
+          "languages",
+          "practice_areas",
+          "years_experience",
+          "rate_paise_per_min",
+          "platform_fee_paise_per_min",
+          "available_now",
+          "why"
+        ],
+        "title": "AdvocateMatch"
+      },
+      "AdvocateMeOut": {
+        "properties": {
+          "advocate_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Advocate Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "verification_status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "verified",
+              "rejected"
+            ],
+            "title": "Verification Status"
+          },
+          "is_available": {
+            "type": "boolean",
+            "title": "Is Available"
+          },
+          "rate_paise_per_min": {
+            "type": "integer",
+            "title": "Rate Paise Per Min"
+          },
+          "min_rate_paise": {
+            "type": "integer",
+            "title": "Min Rate Paise"
+          },
+          "max_rate_paise": {
+            "type": "integer",
+            "title": "Max Rate Paise"
+          }
+        },
+        "type": "object",
+        "required": [
+          "advocate_id",
+          "display_name",
+          "verification_status",
+          "is_available",
+          "rate_paise_per_min",
+          "min_rate_paise",
+          "max_rate_paise"
+        ],
+        "title": "AdvocateMeOut"
+      },
+      "AdvocateProfileOut": {
+        "properties": {
+          "advocate_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Advocate Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "enrolment_no": {
+            "type": "string",
+            "title": "Enrolment No"
+          },
+          "state_bar_council": {
+            "type": "string",
+            "title": "State Bar Council"
+          },
+          "headline": {
+            "type": "string",
+            "title": "Headline"
+          },
+          "courts": {
+            "items": {
+              "$ref": "#/components/schemas/CourtRef"
+            },
+            "type": "array",
+            "title": "Courts"
+          },
+          "languages": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Languages"
+          },
+          "practice_areas": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "tenancy",
+                "cheque_bounce",
+                "consumer",
+                "matrimonial",
+                "criminal_bail",
+                "property",
+                "employment"
+              ]
+            },
+            "type": "array",
+            "title": "Practice Areas"
+          },
+          "years_experience": {
+            "type": "integer",
+            "title": "Years Experience"
+          },
+          "rate_paise_per_min": {
+            "type": "integer",
+            "title": "Rate Paise Per Min"
+          },
+          "platform_fee_paise_per_min": {
+            "type": "integer",
+            "title": "Platform Fee Paise Per Min"
+          },
+          "available_now": {
+            "type": "boolean",
+            "title": "Available Now"
+          }
+        },
+        "type": "object",
+        "required": [
+          "advocate_id",
+          "display_name",
+          "enrolment_no",
+          "state_bar_council",
+          "headline",
+          "courts",
+          "languages",
+          "practice_areas",
+          "years_experience",
+          "rate_paise_per_min",
+          "platform_fee_paise_per_min",
+          "available_now"
+        ],
+        "title": "AdvocateProfileOut",
+        "description": "Public, factual profile (brief §0): no ratings, rankings, outcomes or superlatives."
+      },
+      "AdvocateSessionOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "RESERVED",
+              "LIVE",
+              "ENDING",
+              "SETTLED",
+              "CANCELLED"
+            ],
+            "title": "State"
+          },
+          "client_name": {
+            "type": "string",
+            "title": "Client Name"
+          },
+          "requested_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Requested At"
+          },
+          "started_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Started At"
+          },
+          "ended_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ended At"
+          },
+          "billed_minutes": {
+            "type": "integer",
+            "title": "Billed Minutes"
+          },
+          "used_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Used Seconds"
+          },
+          "earned_paise": {
+            "type": "integer",
+            "title": "Earned Paise",
+            "description": "The advocate's rate × time used: 100 % of it is the advocate's"
+          },
+          "client_ready": {
+            "type": "boolean",
+            "title": "Client Ready"
+          },
+          "summary_shared": {
+            "type": "boolean",
+            "title": "Summary Shared"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "state",
+          "client_name",
+          "requested_at",
+          "started_at",
+          "ended_at",
+          "billed_minutes",
+          "used_seconds",
+          "earned_paise",
+          "client_ready",
+          "summary_shared"
+        ],
+        "title": "AdvocateSessionOut"
+      },
+      "AmountItem": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "paise": {
+            "type": "integer",
+            "title": "Paise"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "paise"
+        ],
+        "title": "AmountItem"
+      },
+      "AttachDocumentIn": {
+        "properties": {
+          "document_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Document Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "document_id"
+        ],
+        "title": "AttachDocumentIn"
+      },
+      "AuthSession": {
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/AuthUser"
+          },
+          "access_token": {
+            "type": "string",
+            "title": "Access Token",
+            "description": "Bearer token, valid for ACCESS_TOKEN_TTL_SECONDS"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user",
+          "access_token",
+          "expires_at"
+        ],
+        "title": "AuthSession"
+      },
+      "AuthUser": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "phone_masked": {
+            "type": "string",
+            "title": "Phone Masked"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "user",
+              "advocate",
+              "admin"
+            ],
+            "title": "Role"
+          },
+          "preferred_lang": {
+            "type": "string",
+            "enum": [
+              "en",
+              "hi"
+            ],
+            "title": "Preferred Lang"
+          },
+          "is_premium": {
+            "type": "boolean",
+            "title": "Is Premium"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "phone_masked",
+          "display_name",
+          "role",
+          "preferred_lang",
+          "is_premium"
+        ],
+        "title": "AuthUser",
+        "description": "Mirrors `AuthUser` in apps/web/lib/api/types.ts. The phone number is only ever returned masked."
+      },
+      "AvailabilityIn": {
+        "properties": {
+          "is_available": {
+            "type": "boolean",
+            "title": "Is Available"
+          }
+        },
+        "type": "object",
+        "required": [
+          "is_available"
+        ],
+        "title": "AvailabilityIn"
+      },
+      "Body_upload_document_v1_saransh_documents_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          },
+          "consent": {
+            "type": "boolean",
+            "title": "Consent"
+          },
+          "locale": {
+            "type": "string",
+            "enum": [
+              "en",
+              "hi"
+            ],
+            "title": "Locale",
+            "default": "en"
+          },
+          "session_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file",
+          "consent"
+        ],
+        "title": "Body_upload_document_v1_saransh_documents_post"
+      },
+      "BonusIn": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "amount_paise": {
+            "type": "integer",
+            "maximum": 1000000.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Amount Paise"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Reason"
+          },
+          "valid_days": {
+            "type": "integer",
+            "maximum": 365.0,
+            "minimum": 1.0,
+            "title": "Valid Days",
+            "default": 30
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "amount_paise",
+          "reason"
+        ],
+        "title": "BonusIn"
+      },
+      "CallTokenOut": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "token": {
+            "type": "string",
+            "title": "Token"
+          },
+          "room": {
+            "type": "string",
+            "title": "Room"
+          },
+          "expires_in": {
+            "type": "integer",
+            "title": "Expires In"
+          }
+        },
+        "type": "object",
+        "required": [
+          "url",
+          "token",
+          "room",
+          "expires_in"
+        ],
+        "title": "CallTokenOut"
+      },
+      "CityOption": {
+        "properties": {
+          "district": {
+            "type": "string",
+            "title": "District"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "UP",
+              "DL"
+            ],
+            "title": "State"
+          }
+        },
+        "type": "object",
+        "required": [
+          "district",
+          "state"
+        ],
+        "title": "CityOption"
+      },
+      "ClauseOut": {
+        "properties": {
+          "number": {
+            "type": "integer",
+            "title": "Number"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page"
+          },
+          "start": {
+            "type": "integer",
+            "title": "Start"
+          },
+          "end": {
+            "type": "integer",
+            "title": "End"
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "high",
+              "review",
+              "standard"
+            ],
+            "title": "Level"
+          },
+          "rule": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rule"
+          }
+        },
+        "type": "object",
+        "required": [
+          "number",
+          "page",
+          "start",
+          "end",
+          "level",
+          "rule"
+        ],
+        "title": "ClauseOut"
+      },
+      "ClausesOut": {
+        "properties": {
+          "risk_points": {
+            "type": "integer",
+            "title": "Risk Points"
+          },
+          "risk_tier": {
+            "type": "string",
+            "enum": [
+              "low",
+              "moderate",
+              "high"
+            ],
+            "title": "Risk Tier"
+          },
+          "clauses": {
+            "items": {
+              "$ref": "#/components/schemas/ClauseOut"
+            },
+            "type": "array",
+            "title": "Clauses"
+          }
+        },
+        "type": "object",
+        "required": [
+          "risk_points",
+          "risk_tier",
+          "clauses"
+        ],
+        "title": "ClausesOut"
+      },
+      "ConsentIn": {
+        "properties": {
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "document_processing",
+              "chat_storage",
+              "marketing",
+              "data_retention_extended"
+            ],
+            "title": "Purpose"
+          },
+          "granted": {
+            "type": "boolean",
+            "title": "Granted"
+          },
+          "policy_version": {
+            "type": "string",
+            "maxLength": 32,
+            "minLength": 1,
+            "title": "Policy Version"
+          }
+        },
+        "type": "object",
+        "required": [
+          "purpose",
+          "granted",
+          "policy_version"
+        ],
+        "title": "ConsentIn"
+      },
+      "ConsentOut": {
+        "properties": {
+          "purpose": {
+            "type": "string",
+            "title": "Purpose"
+          },
+          "granted": {
+            "type": "boolean",
+            "title": "Granted"
+          },
+          "policy_version": {
+            "type": "string",
+            "title": "Policy Version"
+          },
+          "granted_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Granted At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "purpose",
+          "granted",
+          "policy_version",
+          "granted_at"
+        ],
+        "title": "ConsentOut"
+      },
+      "CourtRef": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "name"
+        ],
+        "title": "CourtRef"
+      },
+      "DatedItem": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "iso": {
+            "type": "string",
+            "title": "Iso"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "iso"
+        ],
+        "title": "DatedItem"
+      },
+      "DeletionRequestOut": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "deletion_requested",
+            "title": "Status"
+          },
+          "requested_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Requested At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "requested_at"
+        ],
+        "title": "DeletionRequestOut"
+      },
+      "DocumentOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "file_name": {
+            "type": "string",
+            "title": "File Name"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "uploaded",
+              "processing",
+              "ready",
+              "failed"
+            ],
+            "title": "Status"
+          },
+          "result": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SaranshResultOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "unreadable",
+                  "too_many_pages"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "is_demo": {
+            "type": "boolean",
+            "title": "Is Demo"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "file_name",
+          "status",
+          "result",
+          "error_code",
+          "is_demo"
+        ],
+        "title": "DocumentOut"
+      },
+      "DriftOut": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "column": {
+            "type": "string",
+            "title": "Column"
+          },
+          "projected": {
+            "type": "integer",
+            "title": "Projected"
+          },
+          "from_ledger": {
+            "type": "integer",
+            "title": "From Ledger"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "column",
+          "projected",
+          "from_ledger"
+        ],
+        "title": "DriftOut"
+      },
+      "EarningsOut": {
+        "properties": {
+          "payable_paise": {
+            "type": "integer",
+            "title": "Payable Paise",
+            "description": "Owed to the advocate and not yet paid out"
+          },
+          "today_paise": {
+            "type": "integer",
+            "title": "Today Paise"
+          },
+          "last_7_days_paise": {
+            "type": "integer",
+            "title": "Last 7 Days Paise"
+          },
+          "sessions_last_7_days": {
+            "type": "integer",
+            "title": "Sessions Last 7 Days"
+          }
+        },
+        "type": "object",
+        "required": [
+          "payable_paise",
+          "today_paise",
+          "last_7_days_paise",
+          "sessions_last_7_days"
+        ],
+        "title": "EarningsOut"
+      },
+      "ErrorResponse": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "detail": {
+            "type": "string",
+            "title": "Detail"
+          },
+          "details": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Details"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "detail",
+          "details"
+        ],
+        "title": "ErrorResponse"
+      },
+      "FollowUp": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "location",
+            "title": "Kind",
+            "default": "location"
+          },
+          "primary": {
+            "items": {
+              "$ref": "#/components/schemas/CityOption"
+            },
+            "type": "array",
+            "title": "Primary"
+          },
+          "more": {
+            "items": {
+              "$ref": "#/components/schemas/CityOption"
+            },
+            "type": "array",
+            "title": "More"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "primary",
+          "more"
+        ],
+        "title": "FollowUp"
+      },
+      "LedgerHealthOut": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok"
+          },
+          "imbalance": {
+            "type": "integer",
+            "title": "Imbalance"
+          },
+          "system_total": {
+            "type": "integer",
+            "title": "System Total"
+          },
+          "unbalanced_txns": {
+            "type": "integer",
+            "title": "Unbalanced Txns"
+          },
+          "drift": {
+            "items": {
+              "$ref": "#/components/schemas/DriftOut"
+            },
+            "type": "array",
+            "title": "Drift"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok",
+          "imbalance",
+          "system_total",
+          "unbalanced_txns",
+          "drift"
+        ],
+        "title": "LedgerHealthOut"
+      },
+      "MatchIntent": {
+        "properties": {
+          "practice_area": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "tenancy",
+                  "cheque_bounce",
+                  "consumer",
+                  "matrimonial",
+                  "criminal_bail",
+                  "property",
+                  "employment"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Practice Area"
+          },
+          "sub_issue": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sub Issue"
+          },
+          "forum": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "police",
+                  "district_court",
+                  "consumer_forum",
+                  "high_court",
+                  "tribunal"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Forum"
+          },
+          "urgency": {
+            "type": "string",
+            "enum": [
+              "low",
+              "normal",
+              "high"
+            ],
+            "title": "Urgency",
+            "default": "normal"
+          },
+          "statutes_mentioned": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 10,
+            "title": "Statutes Mentioned"
+          },
+          "language": {
+            "type": "string",
+            "enum": [
+              "hi",
+              "en",
+              "hinglish"
+            ],
+            "title": "Language",
+            "default": "en"
+          }
+        },
+        "type": "object",
+        "required": [
+          "practice_area",
+          "sub_issue",
+          "forum",
+          "urgency",
+          "statutes_mentioned",
+          "language"
+        ],
+        "title": "MatchIntent"
+      },
+      "MatchRequestIn": {
+        "properties": {
+          "query_text": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 3,
+            "title": "Query Text"
+          },
+          "locale": {
+            "type": "string",
+            "enum": [
+              "en",
+              "hi"
+            ],
+            "title": "Locale",
+            "default": "en"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "UP",
+                  "DL"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "State"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z_]{2,40}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District"
+          },
+          "court_hint": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 48
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Court Hint"
+          },
+          "tier": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "premium"
+            ],
+            "title": "Tier",
+            "default": "standard"
+          },
+          "lat": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 90.0,
+                "minimum": -90.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lat"
+          },
+          "lng": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 180.0,
+                "minimum": -180.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lng"
+          }
+        },
+        "type": "object",
+        "required": [
+          "query_text"
+        ],
+        "title": "MatchRequestIn"
+      },
+      "MatchResponse": {
+        "properties": {
+          "match_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Match Id"
+          },
+          "intent": {
+            "$ref": "#/components/schemas/MatchIntent"
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/AdvocateMatch"
+            },
+            "type": "array",
+            "title": "Results"
+          },
+          "follow_up": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FollowUp"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "degraded": {
+            "type": "boolean",
+            "title": "Degraded"
+          },
+          "location": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CityOption"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "match_id",
+          "intent",
+          "results",
+          "follow_up",
+          "degraded",
+          "location"
+        ],
+        "title": "MatchResponse"
+      },
+      "NewsItemOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "excerpt": {
+            "type": "string",
+            "title": "Excerpt"
+          },
+          "canonical_url": {
+            "type": "string",
+            "title": "Canonical Url"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "supreme_court",
+              "allahabad_hc",
+              "delhi_hc",
+              "legislation"
+            ],
+            "title": "Category"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Published At"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "source",
+          "title",
+          "excerpt",
+          "canonical_url",
+          "category",
+          "published_at",
+          "image_url"
+        ],
+        "title": "NewsItemOut"
+      },
+      "NewsPage": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/NewsItemOut"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "next_cursor"
+        ],
+        "title": "NewsPage"
+      },
+      "OtpRequestIn": {
+        "properties": {
+          "phone_e164": {
+            "type": "string",
+            "pattern": "^\\+91[6-9]\\d{9}$",
+            "title": "Phone E164"
+          }
+        },
+        "type": "object",
+        "required": [
+          "phone_e164"
+        ],
+        "title": "OtpRequestIn"
+      },
+      "OtpRequestOut": {
+        "properties": {
+          "resend_after_seconds": {
+            "type": "integer",
+            "title": "Resend After Seconds"
+          }
+        },
+        "type": "object",
+        "required": [
+          "resend_after_seconds"
+        ],
+        "title": "OtpRequestOut"
+      },
+      "OtpVerifyIn": {
+        "properties": {
+          "phone_e164": {
+            "type": "string",
+            "pattern": "^\\+91[6-9]\\d{9}$",
+            "title": "Phone E164"
+          },
+          "code": {
+            "type": "string",
+            "pattern": "^\\d{6}$",
+            "title": "Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "phone_e164",
+          "code"
+        ],
+        "title": "OtpVerifyIn"
+      },
+      "ProfilePatch": {
+        "properties": {
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "preferred_lang": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "en",
+                  "hi"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Preferred Lang"
+          }
+        },
+        "type": "object",
+        "title": "ProfilePatch"
+      },
+      "RateIn": {
+        "properties": {
+          "rate_paise_per_min": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Rate Paise Per Min"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rate_paise_per_min"
+        ],
+        "title": "RateIn"
+      },
+      "RatingIn": {
+        "properties": {
+          "rating": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Rating"
+          },
+          "tags": {
+            "items": {
+              "type": "string",
+              "maxLength": 32
+            },
+            "type": "array",
+            "maxItems": 6,
+            "title": "Tags"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rating"
+        ],
+        "title": "RatingIn"
+      },
+      "ReserveIn": {
+        "properties": {
+          "advocate_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Advocate Id"
+          },
+          "match_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Match Id"
+          },
+          "document_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Document Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "advocate_id"
+        ],
+        "title": "ReserveIn"
+      },
+      "SaranshResultOut": {
+        "properties": {
+          "bullets": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Bullets"
+          },
+          "doc_type": {
+            "type": "string",
+            "title": "Doc Type"
+          },
+          "parties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Parties"
+          },
+          "dates": {
+            "items": {
+              "$ref": "#/components/schemas/DatedItem"
+            },
+            "type": "array",
+            "title": "Dates"
+          },
+          "amounts": {
+            "items": {
+              "$ref": "#/components/schemas/AmountItem"
+            },
+            "type": "array",
+            "title": "Amounts"
+          },
+          "deadlines_mentioned": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Deadlines Mentioned"
+          },
+          "language": {
+            "type": "string",
+            "enum": [
+              "en",
+              "hi"
+            ],
+            "title": "Language"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence"
+          }
+        },
+        "type": "object",
+        "required": [
+          "bullets",
+          "doc_type",
+          "parties",
+          "dates",
+          "amounts",
+          "deadlines_mentioned",
+          "language",
+          "confidence"
+        ],
+        "title": "SaranshResultOut"
+      },
+      "SessionAdvocateOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "courts": {
+            "items": {
+              "$ref": "#/components/schemas/CourtRef"
+            },
+            "type": "array",
+            "title": "Courts"
+          },
+          "languages": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Languages"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "display_name",
+          "courts",
+          "languages"
+        ],
+        "title": "SessionAdvocateOut"
+      },
+      "SessionOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "RESERVED",
+              "LIVE",
+              "ENDING",
+              "SETTLED",
+              "CANCELLED"
+            ],
+            "title": "State"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "chat",
+              "audio",
+              "video"
+            ],
+            "title": "Mode"
+          },
+          "viewer": {
+            "type": "string",
+            "enum": [
+              "user",
+              "advocate"
+            ],
+            "title": "Viewer"
+          },
+          "advocate": {
+            "$ref": "#/components/schemas/SessionAdvocateOut"
+          },
+          "client_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Name",
+            "description": "Shown to the advocate only; null for the user"
+          },
+          "adv_rate_paise": {
+            "type": "integer",
+            "title": "Adv Rate Paise"
+          },
+          "plat_rate_paise": {
+            "type": "integer",
+            "title": "Plat Rate Paise"
+          },
+          "gst_rate_paise": {
+            "type": "integer",
+            "title": "Gst Rate Paise"
+          },
+          "gst_rate_bps": {
+            "type": "integer",
+            "title": "Gst Rate Bps"
+          },
+          "held_paise": {
+            "type": "integer",
+            "title": "Held Paise"
+          },
+          "consumed_paise": {
+            "type": "integer",
+            "title": "Consumed Paise",
+            "description": "Charged so far; after settlement, net of the prorated refund"
+          },
+          "billed_minutes": {
+            "type": "integer",
+            "title": "Billed Minutes"
+          },
+          "used_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Used Seconds"
+          },
+          "refunded_paise": {
+            "type": "integer",
+            "title": "Refunded Paise"
+          },
+          "wallet_available_paise": {
+            "type": "integer",
+            "title": "Wallet Available Paise"
+          },
+          "started_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Started At"
+          },
+          "ended_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ended At"
+          },
+          "end_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "wallet_empty",
+                  "user_ended",
+                  "advocate_ended",
+                  "timeout"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Reason"
+          },
+          "document_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Document Id"
+          },
+          "summary_shared": {
+            "type": "boolean",
+            "title": "Summary Shared"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "state",
+          "mode",
+          "viewer",
+          "advocate",
+          "client_name",
+          "adv_rate_paise",
+          "plat_rate_paise",
+          "gst_rate_paise",
+          "gst_rate_bps",
+          "held_paise",
+          "consumed_paise",
+          "billed_minutes",
+          "used_seconds",
+          "refunded_paise",
+          "wallet_available_paise",
+          "started_at",
+          "ended_at",
+          "end_reason",
+          "document_id",
+          "summary_shared"
+        ],
+        "title": "SessionOut"
+      },
+      "StartIn": {
+        "properties": {
+          "chat_storage_consent": {
+            "type": "boolean",
+            "const": true,
+            "title": "Chat Storage Consent"
+          },
+          "keep_transcript": {
+            "type": "boolean",
+            "title": "Keep Transcript",
+            "default": false
+          },
+          "share_summary": {
+            "type": "boolean",
+            "title": "Share Summary",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "chat_storage_consent"
+        ],
+        "title": "StartIn"
+      },
+      "TopupIn": {
+        "properties": {
+          "amount_paise": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Amount Paise"
+          }
+        },
+        "type": "object",
+        "required": [
+          "amount_paise"
+        ],
+        "title": "TopupIn"
+      },
+      "TopupOrderOut": {
+        "properties": {
+          "order_id": {
+            "type": "string",
+            "title": "Order Id"
+          },
+          "amount_paise": {
+            "type": "integer",
+            "title": "Amount Paise"
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "fake",
+              "razorpay"
+            ],
+            "title": "Provider"
+          },
+          "key_id": {
+            "type": "string",
+            "title": "Key Id",
+            "description": "Public key for the provider's browser checkout; empty for the fake"
+          }
+        },
+        "type": "object",
+        "required": [
+          "order_id",
+          "amount_paise",
+          "provider",
+          "key_id"
+        ],
+        "title": "TopupOrderOut"
+      },
+      "UploadOut": {
+        "properties": {
+          "document_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Document Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "document_id"
+        ],
+        "title": "UploadOut"
+      },
+      "VerifyOut": {
+        "properties": {
+          "advocate_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Advocate Id"
+          },
+          "verification_status": {
+            "type": "string",
+            "title": "Verification Status"
+          },
+          "reindexed": {
+            "type": "boolean",
+            "title": "Reindexed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "advocate_id",
+          "verification_status",
+          "reindexed"
+        ],
+        "title": "VerifyOut"
+      },
+      "WalletOut": {
+        "properties": {
+          "available_paise": {
+            "type": "integer",
+            "title": "Available Paise"
+          },
+          "held_paise": {
+            "type": "integer",
+            "title": "Held Paise"
+          },
+          "bonus_paise": {
+            "type": "integer",
+            "title": "Bonus Paise"
+          }
+        },
+        "type": "object",
+        "required": [
+          "available_paise",
+          "held_paise",
+          "bonus_paise"
+        ],
+        "title": "WalletOut"
+      },
+      "WalletTxnOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "topup",
+              "consultation",
+              "release",
+              "bonus_grant",
+              "bonus_expiry",
+              "refund"
+            ],
+            "title": "Kind"
+          },
+          "amount_paise": {
+            "type": "integer",
+            "title": "Amount Paise",
+            "description": "Signed: positive adds to what you can spend"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "advocate_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Advocate Name"
+          },
+          "minutes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Minutes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "amount_paise",
+          "created_at",
+          "advocate_name",
+          "minutes"
+        ],
+        "title": "WalletTxnOut"
+      },
+      "WebhookAck": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "WebhookAck"
+      },
+      "WsTicketOut": {
+        "properties": {
+          "ticket": {
+            "type": "string",
+            "title": "Ticket"
+          },
+          "expires_in": {
+            "type": "integer",
+            "title": "Expires In"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ticket",
+          "expires_in"
+        ],
+        "title": "WsTicketOut"
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}
