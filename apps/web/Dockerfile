@@ -6,7 +6,7 @@
 # NEXT_PUBLIC_* values are compiled into the browser bundle, so they are build arguments, not runtime env.
 # NEXT_PUBLIC_USE_MOCKS=true builds the fully offline demo (no API needed).
 
-FROM node:22-alpine AS base
+FROM node:26-alpine AS base
 RUN corepack enable
 WORKDIR /repo
 
@@ -33,7 +33,7 @@ COPY --from=deps /repo/apps/web/node_modules ./apps/web/node_modules
 COPY . .
 RUN pnpm --filter @nyay/web build
 
-FROM node:22-alpine
+FROM node:26-alpine
 ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 PORT=3000 HOSTNAME=0.0.0.0
 WORKDIR /app
 RUN addgroup -S nyay && adduser -S -G nyay -u 10001 nyay
